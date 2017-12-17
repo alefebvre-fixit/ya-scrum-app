@@ -13,6 +13,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { WaitingPage } from '../pages/waiting-page/waiting-page';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,6 +21,7 @@ import { environment } from '../environments/environment';
 
 
 import { SprintModule } from '../pages/sprint';
+import { Auth } from '../providers/auth';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { SprintModule } from '../pages/sprint';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    WaitingPage
   ],
   imports: [
     BrowserModule,
@@ -45,9 +48,11 @@ import { SprintModule } from '../pages/sprint';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    WaitingPage
   ],
   providers: [
+    Auth,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
