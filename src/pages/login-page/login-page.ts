@@ -1,5 +1,8 @@
+import { UserService } from '../../ya/core/services/user.service';
+import { SignIn } from '../../ya/core/models';
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 import { Auth } from '../../providers/auth';
 
 @IonicPage()
@@ -8,7 +11,8 @@ import { Auth } from '../../providers/auth';
   templateUrl: 'login-page.html',
 })
 export class LoginPage {
-  credentials = {
+  
+  credentials: SignIn = {
   	  email: '',
   	  password: ''
   };
@@ -16,14 +20,17 @@ export class LoginPage {
   constructor(
     private nav: NavController,
     private navParams: NavParams,
-    private authService: Auth) {
+    private authService: UserService, 
+  ) {
+  
   }
 
   login() {
-    this.authService.login(this.credentials);
+    console.log('Calling Login')
+    this.authService.emailSignIn(this.credentials).subscribe();
   }
 
   signup(){
-    this.authService.register(this.credentials);
+    //this.authService.register(this.credentials);
   }
 }

@@ -14,6 +14,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WaitingPage } from '../pages/waiting-page/waiting-page';
+import { LoginPage } from '../pages/login-page/login-page';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,6 +24,8 @@ import { environment } from '../environments/environment';
 import { SprintModule } from '../pages/sprint';
 import { Auth } from '../providers/auth';
 
+import { SprintService, UserService, StoryService, GroupService, AuthenticationService, ImpedimentService, DateService } from '../ya/core/services';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { Auth } from '../providers/auth';
     ContactPage,
     HomePage,
     TabsPage,
-    WaitingPage
+    WaitingPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -49,9 +53,11 @@ import { Auth } from '../providers/auth';
     ContactPage,
     HomePage,
     TabsPage,
-    WaitingPage
+    WaitingPage,
+    LoginPage
   ],
   providers: [
+    SprintService, UserService, StoryService, GroupService, AuthenticationService, ImpedimentService, DateService,
     Auth,
     StatusBar,
     SplashScreen,

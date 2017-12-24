@@ -1,16 +1,15 @@
 import 'rxjs/add/operator/map';
 
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
 
 //import { AuthProviders, AuthMethods, FirebaseAuthState, AngularFireAuth, FirebaseApp } from 'angularfire2';
 @Injectable()
 export class Auth {
 
   private authState: Observable<firebase.User | null>;
-  private auth: any;
 
   get authenticated(): boolean {
     return this.authState !== null;
@@ -36,7 +35,7 @@ export class Auth {
     if (credentials.email === null || credentials.password === null) {
       return Promise.reject("Please insert credentials");
     } else {
-      return this.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
+      return this.auth$.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
     }
   }
 
@@ -47,6 +46,6 @@ export class Auth {
 
 
   signOut() {
-    this.auth.signOut();
+    this.auth$.auth.signOut();
   }
 }

@@ -13,6 +13,8 @@
 functions/**/*.js
 functions/**/*.js.map
 
+/www
+**/www/*
 
 # IDEs and editors
 /.idea
@@ -48,3 +50,6 @@ testem.log
 Thumbs.db
 
 functions/ya-scrum-firebase-adminsdk-ng7wn-b368482812.json
+
+
+.sourcemaps/*

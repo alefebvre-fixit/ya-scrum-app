@@ -1,3 +1,4 @@
+import { AuthenticationService } from '../ya/core/services/authentication.service';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -8,15 +9,17 @@ import { WaitingPage } from '../pages/waiting-page/waiting-page';
 import { LoginPage } from '../pages/login-page/login-page';
 
 import { Auth } from '../providers/auth';
+import { Account } from '../ya/core/models/account';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  authenticated: boolean;
-  rootPage:any = WaitingPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public authService: Auth) {
-    this.authenticated = false;
+  account: Account;
+  rootPage: any = WaitingPage;
+
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public authService: AuthenticationService) {
+    this.account = undefined;
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -24,11 +27,13 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
-      this.authService.getAuth().subscribe(state => {
-        this.authenticated = this.authService.authenticated;
-        console.log('authenticated=' + this.authenticated );
+      this.authService.$authenticated.subscribe(account => {
 
-        if(this.authenticated) {
+
+        this.account = this.account;
+        console.log('account=' + this.account);
+
+        if (account) {
           this.rootPage = TabsPage;
         } else {
           this.rootPage = LoginPage;
